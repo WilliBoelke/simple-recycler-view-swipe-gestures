@@ -25,11 +25,11 @@ public class RecyclerAdapterSwipeGestures extends ItemTouchHelper.SimpleCallback
     /**
      * Colour to be shown on left swipe
      */
-    private final ColorDrawable redBackground;
+    private ColorDrawable leftBackgroundColor;
     /**
      * Colour to be shown on right swipe
      */
-    private final ColorDrawable greenBackground;
+    private ColorDrawable rightBackgroundColor;
     /**
      * The interface which implements the code which will be executed on the left swipe
      */
@@ -38,11 +38,6 @@ public class RecyclerAdapterSwipeGestures extends ItemTouchHelper.SimpleCallback
      * The interface which implements the code which will be executed on the right swipe
      */
     private SwipeCallbackRight swipeCallbackRight;
-    /**
-     * The Colour which will be drawn
-     * (its one of the above)
-     */
-    private ColorDrawable actualIColor;
 
 
     //------------Constructors------------
@@ -51,12 +46,10 @@ public class RecyclerAdapterSwipeGestures extends ItemTouchHelper.SimpleCallback
      * Public Constructor to just implement the LeftSwipe
      * @param onLeftSwipe
      */
-    public RecyclerAdapterSwipeGestures(SwipeCallbackLeft onLeftSwipe)
-    {
+    public RecyclerAdapterSwipeGestures(SwipeCallbackLeft onLeftSwipe) {
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
-        actualIColor = new ColorDrawable(Color.GREEN);
-        redBackground = new ColorDrawable(Color.RED);
-        greenBackground = new ColorDrawable(Color.GREEN);
+        leftBackgroundColor = new ColorDrawable(Color.BLUE);
+        rightBackgroundColor = new ColorDrawable(Color.BLUE);
         this.swipeCallbackLeft = onLeftSwipe;
         this.swipeCallbackRight = null;
     }
@@ -65,12 +58,10 @@ public class RecyclerAdapterSwipeGestures extends ItemTouchHelper.SimpleCallback
      * Public Constructor to just implement the RightSwipe
      * @param onRightSwipe
      */
-    public RecyclerAdapterSwipeGestures(SwipeCallbackRight onRightSwipe)
-    {
+    public RecyclerAdapterSwipeGestures(SwipeCallbackRight onRightSwipe) {
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
-        actualIColor = new ColorDrawable(Color.GREEN);
-        redBackground = new ColorDrawable(Color.RED);
-        greenBackground = new ColorDrawable(Color.GREEN);
+        leftBackgroundColor = new ColorDrawable(Color.BLUE);
+        rightBackgroundColor = new ColorDrawable(Color.BLUE);
         this.swipeCallbackRight = onRightSwipe;
         this.swipeCallbackLeft = null;
     }
@@ -81,12 +72,10 @@ public class RecyclerAdapterSwipeGestures extends ItemTouchHelper.SimpleCallback
      *
      * @param onLeftSwipe
      */
-    public RecyclerAdapterSwipeGestures(SwipeCallbackRight onRightSwipe, SwipeCallbackLeft onLeftSwipe)
-    {
+    public RecyclerAdapterSwipeGestures(SwipeCallbackRight onRightSwipe, SwipeCallbackLeft onLeftSwipe) {
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
-        actualIColor = new ColorDrawable(Color.GREEN);
-        redBackground = new ColorDrawable(Color.RED);
-        greenBackground = new ColorDrawable(Color.GREEN);
+        leftBackgroundColor = new ColorDrawable(Color.BLUE);
+        rightBackgroundColor = new ColorDrawable(Color.BLUE);
         this.swipeCallbackRight = onRightSwipe;
         this.swipeCallbackLeft = onLeftSwipe;
     }
@@ -129,10 +118,9 @@ public class RecyclerAdapterSwipeGestures extends ItemTouchHelper.SimpleCallback
         // Swiping to the right
         if (dX > 0) {
             if (swipeCallbackRight != null) {
-                actualIColor = redBackground;
-                actualIColor.setBounds(itemView.getLeft(), itemView.getTop(), itemView.getLeft() + ((int) dX) + backgroundCornerOffset, itemView.getBottom());
+                leftBackgroundColor.setBounds(itemView.getLeft(), itemView.getTop(), itemView.getLeft() + ((int) dX) + backgroundCornerOffset, itemView.getBottom());
 
-                actualIColor.draw(canvas);
+                leftBackgroundColor.draw(canvas);
                 super.onChildDraw(canvas, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
             }
         }
@@ -140,15 +128,27 @@ public class RecyclerAdapterSwipeGestures extends ItemTouchHelper.SimpleCallback
         // Swiping to the left
         else if (dX < 0) {
             if (swipeCallbackLeft != null) {
-                actualIColor = greenBackground;
-                actualIColor.setBounds(itemView.getRight() + ((int) dX) - backgroundCornerOffset, itemView.getTop(), itemView.getRight(), itemView.getBottom());
+                rightBackgroundColor.setBounds(itemView.getRight() + ((int) dX) - backgroundCornerOffset, itemView.getTop(), itemView.getRight(), itemView.getBottom());
 
-                actualIColor.draw(canvas);
+                rightBackgroundColor.draw(canvas);
                 super.onChildDraw(canvas, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
             }
         } else {
-            actualIColor.setBounds(0, 0, 0, 0);
+            rightBackgroundColor.setBounds(0, 0, 0, 0);
+            leftBackgroundColor.setBounds(0, 0, 0, 0);
         }
 
+    }
+
+
+    //------------ItemTouchHelper Methods------------
+
+
+    public void setBackgroundColorLeft(ColorDrawable color) {
+        leftBackgroundColor = color;
+    }
+
+    public void setBackgroundColorRight(ColorDrawable color) {
+        rightBackgroundColor = color;
     }
 }

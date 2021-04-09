@@ -1,14 +1,14 @@
 package willi.boelke.swipeGestures;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -58,12 +58,19 @@ public class MainActivity extends AppCompatActivity
      * Setup the RecyclerView, attaches the adapter
      * and the swipe Gestures
      */
-    private void setupRecyclerView()
-    {
+    private void setupRecyclerView() {
         recyclerView = findViewById(R.id.demo_recycler_view);
         layoutManager = new LinearLayoutManager(this.getApplicationContext());
         adapter = new RecyclerViewAdapterWithOnClick(list);
-        itemTouchHelper = new ItemTouchHelper(new RecyclerAdapterSwipeGestures(rightCallback, leftCallback));
+
+
+        RecyclerAdapterSwipeGestures recyclerAdapterSwipeGestures = new RecyclerAdapterSwipeGestures(rightCallback, leftCallback);
+
+        // Setting background colours
+        recyclerAdapterSwipeGestures.setBackgroundColorLeft(new ColorDrawable(Color.RED));
+        recyclerAdapterSwipeGestures.setBackgroundColorRight(new ColorDrawable(Color.GREEN));
+
+        itemTouchHelper = new ItemTouchHelper(recyclerAdapterSwipeGestures);
         itemTouchHelper.attachToRecyclerView(recyclerView);
         recyclerView.setLayoutManager(layoutManager);
         adapter.setOnItemClickListener(onItemClickListener);
