@@ -49,7 +49,6 @@ public class RecyclerAdapterSwipeGestures extends ItemTouchHelper.SimpleCallback
 
     /**
      * Public Constructor to just implement the LeftSwipe
-     *  TODO fix that only the left swipe will work
      * @param onLeftSwipe
      */
     public RecyclerAdapterSwipeGestures(SwipeCallbackLeft onLeftSwipe)
@@ -59,11 +58,11 @@ public class RecyclerAdapterSwipeGestures extends ItemTouchHelper.SimpleCallback
         redBackground = new ColorDrawable(Color.RED);
         greenBackground = new ColorDrawable(Color.GREEN);
         this.swipeCallbackLeft = onLeftSwipe;
+        this.swipeCallbackRight = null;
     }
 
     /**
      * Public Constructor to just implement the RightSwipe
-     *  TODO fix that only the right swipe will work
      * @param onRightSwipe
      */
     public RecyclerAdapterSwipeGestures(SwipeCallbackRight onRightSwipe)
@@ -73,6 +72,7 @@ public class RecyclerAdapterSwipeGestures extends ItemTouchHelper.SimpleCallback
         redBackground = new ColorDrawable(Color.RED);
         greenBackground = new ColorDrawable(Color.GREEN);
         this.swipeCallbackRight = onRightSwipe;
+        this.swipeCallbackLeft = null;
     }
 
 
@@ -105,17 +105,13 @@ public class RecyclerAdapterSwipeGestures extends ItemTouchHelper.SimpleCallback
     {
         int position = viewHolder.getAdapterPosition();
 
-        if (swipeCallbackLeft != null)  // TODO fix that only the right swipe will work
-        {
-            if (direction == ItemTouchHelper.LEFT)
-            {
+        if (swipeCallbackLeft != null) {
+            if (direction == ItemTouchHelper.LEFT) {
                 this.swipeCallbackLeft.onLeftSwipe(position);
             }
         }
-        if (swipeCallbackRight != null)  // TODO fix that only the left swipe will work
-        {
-            if (direction == ItemTouchHelper.RIGHT)
-            {
+        if (swipeCallbackRight != null) {
+            if (direction == ItemTouchHelper.RIGHT) {
                 this.swipeCallbackRight.onRightSwipe(position);
             }
         }
@@ -131,24 +127,28 @@ public class RecyclerAdapterSwipeGestures extends ItemTouchHelper.SimpleCallback
 
 
         // Swiping to the right
-        if (dX > 0)
-        {
-            actualIColor = redBackground;
-            actualIColor.setBounds(itemView.getLeft(), itemView.getTop(), itemView.getLeft() + ((int) dX) + backgroundCornerOffset, itemView.getBottom());
+        if (dX > 0) {
+            if (swipeCallbackRight != null) {
+                actualIColor = redBackground;
+                actualIColor.setBounds(itemView.getLeft(), itemView.getTop(), itemView.getLeft() + ((int) dX) + backgroundCornerOffset, itemView.getBottom());
+
+                actualIColor.draw(canvas);
+                super.onChildDraw(canvas, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+            }
         }
 
         // Swiping to the left
-        else if (dX < 0)
-        {
-            actualIColor = greenBackground;
-            actualIColor.setBounds(itemView.getRight() + ((int) dX) - backgroundCornerOffset, itemView.getTop(), itemView.getRight(), itemView.getBottom());
-        }
-        else
-        {
+        else if (dX < 0) {
+            if (swipeCallbackLeft != null) {
+                actualIColor = greenBackground;
+                actualIColor.setBounds(itemView.getRight() + ((int) dX) - backgroundCornerOffset, itemView.getTop(), itemView.getRight(), itemView.getBottom());
+
+                actualIColor.draw(canvas);
+                super.onChildDraw(canvas, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+            }
+        } else {
             actualIColor.setBounds(0, 0, 0, 0);
         }
 
-        actualIColor.draw(canvas);
-        super.onChildDraw(canvas, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
     }
 }
