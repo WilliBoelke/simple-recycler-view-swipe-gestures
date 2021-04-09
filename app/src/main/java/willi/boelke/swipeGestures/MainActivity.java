@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -70,6 +71,11 @@ public class MainActivity extends AppCompatActivity
         recyclerAdapterSwipeGestures.setBackgroundColorLeft(new ColorDrawable(Color.RED));
         recyclerAdapterSwipeGestures.setBackgroundColorRight(new ColorDrawable(Color.GREEN));
 
+        // Setting Icons
+
+        recyclerAdapterSwipeGestures.setIconRight(ContextCompat.getDrawable(this, R.drawable.icon));
+        recyclerAdapterSwipeGestures.setIconLeft(ContextCompat.getDrawable(this, R.drawable.icon2));
+        recyclerAdapterSwipeGestures.setIconSizeMultiplier(2);
         itemTouchHelper = new ItemTouchHelper(recyclerAdapterSwipeGestures);
         itemTouchHelper.attachToRecyclerView(recyclerView);
         recyclerView.setLayoutManager(layoutManager);
