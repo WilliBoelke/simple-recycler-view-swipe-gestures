@@ -15,8 +15,6 @@ import java.util.ArrayList;
 
 import willi.boelke.swipeGestures.RecyclerViewAdapter.RecyclerViewAdapterWithOnClick;
 import willi.boelke.swipeGestures.SwipeGestures.RecyclerAdapterSwipeGestures;
-import willi.boelke.swipeGestures.SwipeGestures.SwipeCallbackLeft;
-import willi.boelke.swipeGestures.SwipeGestures.SwipeCallbackRight;
 
 /**
  * Here an example implementation af a RecyclerView using the RecyclerAdapterSwipeGestures
@@ -88,7 +86,7 @@ public class MainActivity extends AppCompatActivity
 
 
 
-    private SwipeCallbackLeft leftCallback = new SwipeCallbackLeft()
+    private RecyclerAdapterSwipeGestures.SwipeCallbackLeft leftCallback = new RecyclerAdapterSwipeGestures.SwipeCallbackLeft()
     {
         @Override
         public void onLeftSwipe(int position)
@@ -99,7 +97,7 @@ public class MainActivity extends AppCompatActivity
     };
 
 
-    private SwipeCallbackRight rightCallback = new SwipeCallbackRight()
+    private RecyclerAdapterSwipeGestures.SwipeCallbackRight rightCallback = new RecyclerAdapterSwipeGestures.SwipeCallbackRight()
     {
         @Override
         public void onRightSwipe(int position)

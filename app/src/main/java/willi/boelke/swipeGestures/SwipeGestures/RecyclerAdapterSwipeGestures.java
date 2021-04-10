@@ -222,4 +222,50 @@ public class RecyclerAdapterSwipeGestures extends ItemTouchHelper.SimpleCallback
     public void setIconSizeMultiplier(int factor) {
         this.iconSizeMultiplier = factor;
     }
+
+
+
+
+    //------------OnSwipe------------
+
+
+
+    /**
+     * Setter for the left swipe callback
+     * to set it after initialization
+     * @param swipeCallbackLeft
+     */
+    public void setSwipeCallbackLeft(SwipeCallbackLeft swipeCallbackLeft)
+    {
+        this.swipeCallbackLeft = swipeCallbackLeft;
+    }
+
+
+    /**
+     * Setter for the left right callback
+     * to set it after initialization
+     * @param swipeCallbackRight
+     */
+    public void setSwipeCallbackRight(SwipeCallbackRight swipeCallbackRight)
+    {
+        this.swipeCallbackRight = swipeCallbackRight;
+    }
+
+    /**
+     * Used to implement different  Swipe actions in {@link RecyclerAdapterSwipeGestures}
+     */
+    public interface SwipeCallbackLeft
+    {
+        void onLeftSwipe(int position);
+    }
+
+    /**
+     * Used to implement different  Swipe actions in {@link RecyclerAdapterSwipeGestures}
+     */
+    public interface SwipeCallbackRight
+    {
+        void onRightSwipe(int position);
+    }
+
+
 }
