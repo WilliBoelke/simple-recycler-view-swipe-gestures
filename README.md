@@ -104,7 +104,7 @@ SwipeGestureManager recyclerAdapterSwipeGestures = new SwipeGestureManager(right
 
 ### 4.3 Set a colour:
 Use the setter to set a colour: 
-```     
+```java     
 recyclerAdapterSwipeGestures.setBackgroundColorLeft(new ColorDrawable(Color.RED));
 ```
 You can set a different colour for the two directions.
@@ -115,14 +115,14 @@ Blue                          |  Yellow
 :-----------------------------------:|:---------------------------------------:
 ![BLUE](img/ColourBlue.png )       | ![YELLOW](img/ColourYellow.png)
 
-### 3.5 Set icons:
+### 4.4 Set Icons:
 Optionally you can use icons for the swipe acions which will be displayed when the swpie is performed. 
-```
+```java
 recyclerAdapterSwipeGestures.setIconRight(ContextCompat.getDrawable(this, R.drawable.your_icon));
 ```
 That again works for both actions. 
 you also can change the size of the icons by using 
-```
+```java
 recyclerAdapterSwipeGestures.setIconSizeMultiplier(2);
 ```
 
@@ -134,12 +134,14 @@ Small                                |  Small
 Big                                  |  Big
 ![BIGLEFT](img/BigIconLeft.png )     | ![BIGRIGHT](img/BigIconRight.png) 
 
-### 3.6 Attach to the `RechylerViewAdapter`
+### 4.5 Attach to the `RechylerViewAdapter`
 You need to attach the swipe gestures to the RecyyclerView Adapter using a ItemTouchHelper
 ```
 ItemTouchHelper itemTouchHelper = new ItemTouchHelper(recyclerAdapterSwipeGestures);
 itemTouchHelper.attachToRecyclerView(recyclerView);
 ```
+
+
 
 And thats it for now.
 You can find an example implementation in the `MainActivity`
