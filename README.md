@@ -38,7 +38,7 @@ An easy to use implemenation of swipe gestures for an android RecyclerView.
 * Add the dependencie 
 ```groovy
 	dependencies {
-	        implementation 'com.github.WilliBoelke:simple-recycler-view-swipe-gestures:v1.0'
+	        implementation 'com.github.WilliBoelke:simple-recycler-view-swipe-gestures:v1.1'
 	}
 ```
 
@@ -60,10 +60,11 @@ An easy to use implemenation of swipe gestures for an android RecyclerView.
 <dependency>
 	<groupId>com.github.WilliBoelke</groupId>
 	<artifactId>simple-recycler-view-swipe-gestures</artifactId>
-	<version>v1.0</version>
+	<version>v1.1</version>
 </dependency>
 ```
-
+#### Or find other versions here: 
+[JitPack-SompleSwipeGestures](https://jitpack.io/#WilliBoelke/simple-recycler-view-swipe-gestures)
 
 ### 3.2 Import `SwipeGestureManager`  <br />
 
