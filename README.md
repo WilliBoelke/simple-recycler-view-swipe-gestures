@@ -66,15 +66,14 @@ you also can change the size of the icons by using
 ```
 recyclerAdapterSwipeGestures.setIconSizeMultiplier(2);
 ```
-Icons     |  Icons
+
+Icon                                 |  Icon
 :-----------------------------------:|:---------------------------------------:
-![RIGHT](img/IconLeft.png )       | ![LEFT](img/IconRight.png)
-Small                          |  Small  
-:-----------------------------------:|:---------------------------------------:
-![SMALLLEFT](img/SmallIconLeft.png )       | ![SMAllRIGHT](\img\SmallIconRight.png) 
-Big      |  Big
-:-----------------------------------:|:---------------------------------------:
-![BIGLEFT](img/BigiconLeft.png )       | ![BIGRIGHT](img/BigIconRight.png) 
+![RIGHT](img/IconLeft.png )          | ![LEFT](img/IconRight.png)
+Small                                |  Small
+![SMALLLEFT](img/SmallIconLeft.png ) | ![SMAllRIGHT](img/SmallIconRight.png) 
+Big                                  |  Big
+![BIGLEFT](img/BigIconLeft.png )     | ![BIGRIGHT](img/BigIconRight.png) 
 
 ### 6. Attach to the `RechylerViewAdapter`
 You need to attach the swipe gestures to the RecyyclerView Adapter using a ItemTouchHelper
