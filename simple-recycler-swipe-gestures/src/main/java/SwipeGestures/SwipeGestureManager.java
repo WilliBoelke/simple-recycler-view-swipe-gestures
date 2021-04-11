@@ -1,4 +1,5 @@
-package willi.boelke.swipeGestures.SwipeGestures;
+package SwipeGestures;
+
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -19,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
  * and then only the one swipe gesture will be possible.
  * That doesn't completely works at the moment
  */
-public class RecyclerAdapterSwipeGestures extends ItemTouchHelper.SimpleCallback
+public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
 {
 
     //------------Instance Variables------------
@@ -62,7 +63,7 @@ public class RecyclerAdapterSwipeGestures extends ItemTouchHelper.SimpleCallback
      *
      * @param onLeftSwipe Implementation of the left swipe action
      */
-    public RecyclerAdapterSwipeGestures(SwipeCallbackLeft onLeftSwipe) {
+    public SwipeGestureManager(SwipeCallbackLeft onLeftSwipe) {
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
         leftBackgroundColor = new ColorDrawable(Color.BLUE);
         rightBackgroundColor = new ColorDrawable(Color.BLUE);
@@ -76,7 +77,7 @@ public class RecyclerAdapterSwipeGestures extends ItemTouchHelper.SimpleCallback
      * @param onRightSwipe
      * Implementation of the right swipe action
      */
-    public RecyclerAdapterSwipeGestures(SwipeCallbackRight onRightSwipe) {
+    public SwipeGestureManager(SwipeCallbackRight onRightSwipe) {
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
         leftBackgroundColor = new ColorDrawable(Color.BLUE);
         rightBackgroundColor = new ColorDrawable(Color.BLUE);
@@ -95,7 +96,7 @@ public class RecyclerAdapterSwipeGestures extends ItemTouchHelper.SimpleCallback
      * Implementation of the right swipe action
      *
      */
-    public RecyclerAdapterSwipeGestures(SwipeCallbackRight onRightSwipe, SwipeCallbackLeft onLeftSwipe) {
+    public SwipeGestureManager(SwipeCallbackRight onRightSwipe, SwipeCallbackLeft onLeftSwipe) {
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
         leftBackgroundColor = new ColorDrawable(Color.BLUE);
         rightBackgroundColor = new ColorDrawable(Color.BLUE);
