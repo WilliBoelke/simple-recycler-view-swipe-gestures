@@ -4,6 +4,7 @@ package SwipeGestures;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -24,6 +25,13 @@ import androidx.recyclerview.widget.RecyclerView;
  */
 public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
 {
+    //------------Standard Values------------
+
+    private final int STANDARD_MARGIN = 40;
+    private final int STANDARD_COLOUR = Color.BLUE;
+    private final int STANDARD_ICON_SIZE_MULTIPLIER = 1;
+    private final int STANDARD_TEXT_SIZE = 60;
+    private final int STANDARD_TEXT_STROKE = 3;
 
     //------------Instance Variables------------
 
@@ -56,12 +64,26 @@ public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
      * drawable icon to change its site
      */
     private int iconSizeMultiplier;
-
+    /**
+     * Text which will be displayed on right swipe
+     */
     private String textRight;
+    /**
+     * text which ill be displayed on left swipe
+     */
     private String textLeft;
-
+    /**
+     * text paint for the left swipe text
+     */
     private Paint textPaintLeft;
+    /**
+     * text paint for the right swipe text
+     */
     private Paint textPaintRight;
+    /**
+     * The margin between canvas-border, icon and text
+     */
+    private int margin = 40;
 
 
     //------------Constructors------------
@@ -74,23 +96,9 @@ public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
     public SwipeGestureManager(SwipeCallbackLeft onLeftSwipe)
     {
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
-        leftBackgroundColor = new ColorDrawable(Color.BLUE);
-        rightBackgroundColor = new ColorDrawable(Color.BLUE);
-        this.iconSizeMultiplier = 1;
+        initWithStandardValues();
         this.swipeCallbackLeft = onLeftSwipe;
         this.swipeCallbackRight = null;
-        this.textPaintLeft = new Paint();
-        textPaintLeft.setColor(Color.BLACK);
-        textPaintLeft.setStyle(Paint.Style.FILL);
-        textPaintLeft.setStrokeWidth(5);
-        textPaintLeft.setTextSize(100);
-        textPaintLeft.setTextAlign(Paint.Align.RIGHT);
-        this.textPaintRight = new Paint();
-        textPaintRight.setColor(Color.BLACK);
-        textPaintRight.setStyle(Paint.Style.STROKE);
-        textPaintRight.setStrokeWidth(5);
-        textPaintRight.setTextSize(100);
-        textPaintRight.setTextAlign(Paint.Align.LEFT);
     }
 
     /**
@@ -101,23 +109,9 @@ public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
     public SwipeGestureManager(SwipeCallbackRight onRightSwipe)
     {
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
-        leftBackgroundColor = new ColorDrawable(Color.BLUE);
-        rightBackgroundColor = new ColorDrawable(Color.BLUE);
-        this.iconSizeMultiplier = 1;
+        initWithStandardValues();
         this.swipeCallbackRight = onRightSwipe;
         this.swipeCallbackLeft = null;
-        this.textPaintLeft = new Paint();
-        textPaintLeft.setColor(Color.BLACK);
-        textPaintLeft.setStyle(Paint.Style.FILL);
-        textPaintLeft.setStrokeWidth(5);
-        textPaintLeft.setTextSize(100);
-        textPaintLeft.setTextAlign(Paint.Align.RIGHT);
-        this.textPaintRight = new Paint();
-        textPaintRight.setColor(Color.BLACK);
-        textPaintRight.setStyle(Paint.Style.STROKE);
-        textPaintRight.setStrokeWidth(5);
-        textPaintRight.setTextSize(100);
-        textPaintRight.setTextAlign(Paint.Align.LEFT);
     }
 
 
@@ -130,26 +124,32 @@ public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
     public SwipeGestureManager(SwipeCallbackRight onRightSwipe, SwipeCallbackLeft onLeftSwipe)
     {
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
-        leftBackgroundColor = new ColorDrawable(Color.BLUE);
-        rightBackgroundColor = new ColorDrawable(Color.BLUE);
-        this.iconSizeMultiplier = 1;
+        initWithStandardValues();
         this.swipeCallbackRight = onRightSwipe;
         this.swipeCallbackLeft = onLeftSwipe;
-        this.textPaintLeft = new Paint();
-        this.textPaintLeft = new Paint();
-        textPaintLeft.setColor(Color.BLACK);
-        textPaintLeft.setStyle(Paint.Style.FILL);
-        textPaintLeft.setStrokeWidth(5);
-        textPaintLeft.setTextSize(100);
-        textPaintLeft.setTextAlign(Paint.Align.RIGHT);
-        this.textPaintRight = new Paint();
-        textPaintRight.setColor(Color.BLACK);
-        textPaintRight.setStyle(Paint.Style.FILL);
-        textPaintRight.setStrokeWidth(5);
-        textPaintRight.setTextSize(100);
-        textPaintRight.setTextAlign(Paint.Align.LEFT);
     }
 
+    private void initWithStandardValues()
+    {
+        this.iconSizeMultiplier = STANDARD_ICON_SIZE_MULTIPLIER;
+        this.margin = STANDARD_MARGIN;
+        this.leftBackgroundColor = new ColorDrawable(STANDARD_COLOUR);
+        this.rightBackgroundColor = new ColorDrawable(STANDARD_COLOUR);
+
+        this.textPaintLeft = new Paint();
+        this.textPaintLeft.setColor(Color.BLACK);
+        this.textPaintLeft.setStyle(Paint.Style.FILL_AND_STROKE);
+        this.textPaintLeft.setStrokeWidth(STANDARD_TEXT_STROKE);
+        this.textPaintLeft.setTextSize(STANDARD_TEXT_SIZE);
+        this.textPaintLeft.setTextAlign(Paint.Align.RIGHT);
+
+        this.textPaintRight = new Paint();
+        this.textPaintRight.setColor(Color.BLACK);
+        this.textPaintRight.setStyle(Paint.Style.FILL_AND_STROKE);
+        this.textPaintRight.setStrokeWidth(STANDARD_TEXT_STROKE);
+        this.textPaintRight.setTextSize(STANDARD_TEXT_SIZE);
+        this.textPaintRight.setTextAlign(Paint.Align.LEFT);
+    }
 
     //------------ItemTouchHelper Methods------------
 
@@ -222,7 +222,7 @@ public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
                 //Calculate values
                 int drawableHeight = drawableLeft.getIntrinsicHeight() * iconSizeMultiplier;
                 int drawableWidth = drawableLeft.getIntrinsicWidth() * iconSizeMultiplier;
-                int boundRight = itemView.getRight() - 40;
+                int boundRight = itemView.getRight() - margin;
                 int boundLeft = boundRight - drawableWidth;
                 int boundTop = itemView.getTop() + (itemView.getHeight() - drawableHeight) / 2;
                 int boundBottom = itemView.getBottom() - (itemView.getHeight() - drawableHeight) / 2;
@@ -233,12 +233,12 @@ public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
                 if (textLeft != null)
                 {
                     // if an icon is present we need to consider its size for the left margin
-                    drawTextLeft(canvas, itemView, 1.5 * drawableWidth);
+                    drawTextLeft(canvas, itemView, drawableWidth + 2 * margin);
                 }
             }
             else if (textLeft != null)
             {
-                drawTextLeft(canvas, itemView, 40);
+                drawTextLeft(canvas, itemView, margin);
             }
         }
         else
@@ -276,7 +276,7 @@ public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
                 //Calculate values
                 int drawableHeight = drawableLeft.getIntrinsicHeight() * iconSizeMultiplier;
                 int drawableWidth = drawableLeft.getIntrinsicWidth() * iconSizeMultiplier;
-                int boundLeft = itemView.getLeft() + 40;
+                int boundLeft = itemView.getLeft() + margin;
                 int boundRight = boundLeft + drawableWidth;
                 int boundTop = itemView.getTop() + (itemView.getHeight() - drawableHeight) / 2;
                 int boundBottom = itemView.getBottom() - (itemView.getHeight() - drawableHeight) / 2;
@@ -286,12 +286,12 @@ public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
 
                 if (textRight != null)
                 {
-                    drawTextRight(canvas, itemView, 1.5 * drawableWidth);
+                    drawTextRight(canvas, itemView, drawableWidth + 2 * margin);
                 }
             }
             else if (textRight != null)
             {
-                drawTextRight(canvas, itemView, 40);
+                drawTextRight(canvas, itemView, margin);
             }
         }
     }
@@ -357,6 +357,29 @@ public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
     }
 
     /**
+     * Sets the colour for both icons
+     *
+     * @param color the colour to be applied
+     */
+    public void setIconColor(int color)
+    {
+        drawableLeft.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+        drawableRight.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+    }
+
+    /**
+     * Sets the colours for both icons individually
+     *
+     * @param colorRight colour for the right swipe icon
+     * @param colorLeft  colour for the left swipe icon
+     */
+    public void setIconColor(int colorRight, int colorLeft)
+    {
+        drawableLeft.setColorFilter(colorLeft, PorterDuff.Mode.SRC_ATOP);
+        drawableRight.setColorFilter(colorRight, PorterDuff.Mode.SRC_ATOP);
+    }
+
+    /**
      * The the multiply factor for the icon size
      *
      * @param factor the factor
@@ -384,6 +407,84 @@ public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
     public void setTextLeft(String textLeft)
     {
         this.textLeft = textLeft;
+    }
+
+    /**
+     * Setter for the text size (both swipe directions)
+     *
+     * @param size
+     */
+    public void setTextSize(int size)
+    {
+        textPaintLeft.setTextSize(size);
+        textPaintRight.setTextSize(size);
+    }
+
+    /**
+     * Setter for two different sizes for both swipe actions
+     *
+     * @param leftSize  size for the text at left swipe
+     * @param rightSize size for the text on right swipe
+     */
+    public void setTextSize(int leftSize, int rightSize)
+    {
+        textPaintLeft.setTextSize(leftSize);
+        textPaintRight.setTextSize(rightSize);
+    }
+
+    /**
+     * Sets one colour for both texts
+     *
+     * @param color the colour to be applied
+     */
+    public void setTextColor(int color)
+    {
+        textPaintRight.setColor(color);
+        textPaintLeft.setColor(color);
+    }
+
+    /**
+     * Sets two different colours for the texts individually
+     *
+     * @param colorLeft  the colour for the left swipe text
+     * @param colorRight the colour for the right swipe text
+     */
+    public void setTextColor(int colorLeft, int colorRight)
+    {
+        textPaintRight.setColor(colorRight);
+        textPaintLeft.setColor(colorLeft);
+    }
+
+    /**
+     * Sets the Margin between border - icon - text
+     *
+     * @param margin the margin
+     */
+    public void setMargin(int margin)
+    {
+        this.margin = margin;
+    }
+
+
+    /**
+     * Sets the text weight/stroke for both texts
+     * @param weight
+     */
+    public void setTextWeight(float weight)
+    {
+        textPaintRight.setStrokeWidth(weight);
+        textPaintLeft.setStrokeWidth(weight);
+    }
+
+    /**
+     *  Sets the text weight/stroke for both texts individually
+     * @param weightLeft
+     * @param weightRight
+     */
+    public void setTextWeight(float weightLeft, float weightRight)
+    {
+        textPaintRight.setStrokeWidth(weightRight);
+        textPaintLeft.setStrokeWidth(weightLeft);
     }
 
 
