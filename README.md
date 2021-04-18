@@ -5,7 +5,7 @@
 
 ## 1. Introduction 
 
-An easy to use implemenation of swipe gestures for an android RecyclerView. 
+An easy to use and highly customizable implemenation of swipe gestures for an android RecyclerView. 
 
 * Support for left and right swipes for any RecyclerView
 * Set Colours as background for each swipe direction
@@ -127,7 +127,7 @@ you also can change the size of the icons by using
 recyclerAdapterSwipeGestures.setIconSizeMultiplier(2);
 ```
 
-Icon                                 |  Icon
+Icon                                 |  
 :-----------------------------------:|:---------------------------------------:
 ![RIGHT](img/IconLeft.png )          | ![LEFT](img/IconRight.png)
 Small                                |  Small
@@ -135,7 +135,45 @@ Small                                |  Small
 Big                                  |  Big
 ![BIGLEFT](img/BigIconLeft.png )     | ![BIGRIGHT](img/BigIconRight.png) 
 
-### 4.5 Attach to the `RechylerViewAdapter`
+###  4.5 Text 
+
+You can set a text (insead or with and icon), the text can be customized by using the 
+setters. 
+
+```java
+recyclerAdapterSwipeGestures.setTextLeft("LEFT");
+recyclerAdapterSwipeGestures.setTextRight("RIGHT");
+```
+Customize the text : 
+
+```java
+//Set text size
+recyclerAdapterSwipeGestures.setTextSize(60);
+
+//Set text colour
+recyclerAdapterSwipeGestures.setTextColor(Color.BLACK);
+```
+Texts can also be customized seperatly by using the setters as follows: 
+
+```java
+//Set text size
+recyclerAdapterSwipeGestures.setTextSize(60, 100
+
+//Set text colour
+recyclerAdapterSwipeGestures.setTextColor(Color.BLACK, Color.YELLOW);
+```
+
+
+Text                              |  
+:-----------------------------------:|:---------------------------------------:
+Right Text                                 |  Small
+![SMALLLEFT](img/RightText.png ) | ![SMAllRIGHT](img/TextWithIcon.png) 
+Text and icon color                                   |  Only Text
+![BIGLEFT](img/TextAndIconColour.png )     | ![BIGRIGHT](img/TextNoIcon.png) 
+
+
+### 4.6 Attach to the `RechylerViewAdapter`
+
 You need to attach the swipe gestures to the RecyyclerView Adapter using a ItemTouchHelper
 ```
 ItemTouchHelper itemTouchHelper = new ItemTouchHelper(recyclerAdapterSwipeGestures);
