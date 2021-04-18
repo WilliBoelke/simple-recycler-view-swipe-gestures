@@ -363,8 +363,14 @@ public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
      */
     public void setIconColor(int color)
     {
-        drawableLeft.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
-        drawableRight.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+        if(drawableLeft != null)
+        {
+            drawableLeft.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+        }
+        if (drawableRight != null)
+        {
+            drawableRight.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+        }
     }
 
     /**
@@ -375,8 +381,14 @@ public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
      */
     public void setIconColor(int colorRight, int colorLeft)
     {
-        drawableLeft.setColorFilter(colorLeft, PorterDuff.Mode.SRC_ATOP);
-        drawableRight.setColorFilter(colorRight, PorterDuff.Mode.SRC_ATOP);
+        if(drawableLeft != null)
+        {
+            drawableLeft.setColorFilter(colorLeft, PorterDuff.Mode.SRC_ATOP);
+        }
+        if (drawableRight != null)
+        {
+            drawableRight.setColorFilter(colorRight, PorterDuff.Mode.SRC_ATOP);
+        }
     }
 
     /**
