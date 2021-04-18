@@ -10,14 +10,12 @@ An easy to use and highly customizable implemenation of swipe gestures for an an
 * Support for left and right swipes for any RecyclerView
 * Set Colours as background for each swipe direction
 * Set Icons for each swipe direction 
-
-
-
+* Sez zexzs in addition to icons
 
 ## 2. Planned 
 
-* The Actions will be executed onl when clicking on the coloured button, which will be schown when swiped, not directly after swiping. 
-* More the Acion for each swipe direction (several buttons will be displayed)
+* The Actions will be executed only when clicking on the coloured button, which will be schown when swiped, not directly after swiping. 
+* More then one Action for each swipe direction (several buttons will be displayed)
 
 ## 3. Setup 
 
