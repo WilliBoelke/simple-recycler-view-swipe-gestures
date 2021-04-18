@@ -125,7 +125,7 @@ you also can change the size of the icons by using
 recyclerAdapterSwipeGestures.setIconSizeMultiplier(2);
 ```
 
-Icon                                 |  
+Icon                                 |  Icon
 :-----------------------------------:|:---------------------------------------:
 ![RIGHT](img/IconLeft.png )          | ![LEFT](img/IconRight.png)
 Small                                |  Small
@@ -162,12 +162,12 @@ recyclerAdapterSwipeGestures.setTextColor(Color.BLACK, Color.YELLOW);
 ```
 
 
-Text                              |  
+Text                                 |  Text
 :-----------------------------------:|:---------------------------------------:
-Right Text                                 |  Small
-![SMALLLEFT](img/RightText.png ) | ![SMAllRIGHT](img/TextWithIcon.png) 
-Text and icon color                                   |  Only Text
-![BIGLEFT](img/TextAndIconColour.png )     | ![BIGRIGHT](img/TextNoIcon.png) 
+Right Text                           |  Small
+![RIGHTTEXT](img/RightText.png )     | ![TEXTWITHICON](img/TextWithIcon.png) 
+Text and icon color                  |  Only Text
+![COLOURTEXT](img/TextAndIconColour.png) | ![ONLYTEXT](img/TextNoIcon.png) 
 
 
 ### 4.6 Attach to the `RechylerViewAdapter`
