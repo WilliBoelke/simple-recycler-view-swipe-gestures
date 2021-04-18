@@ -74,11 +74,17 @@ public class MainActivity extends AppCompatActivity
         // Setting Icons
         recyclerAdapterSwipeGestures.setIconRight(ContextCompat.getDrawable(this, R.drawable.icon));
         recyclerAdapterSwipeGestures.setIconLeft(ContextCompat.getDrawable(this, R.drawable.icon2));
-        recyclerAdapterSwipeGestures.setIconSizeMultiplier(1);
+        recyclerAdapterSwipeGestures.setIconSizeMultiplier(2);
+
+        //Set Text
+        recyclerAdapterSwipeGestures.setTextLeft("LEFT");
+        recyclerAdapterSwipeGestures.setTextRight("RIGHT");
 
         // Attach to the Recycler View Adapter
         itemTouchHelper = new ItemTouchHelper(recyclerAdapterSwipeGestures);
         itemTouchHelper.attachToRecyclerView(recyclerView);
+
+
 
 
         recyclerView.setLayoutManager(layoutManager);
