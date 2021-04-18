@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 /**
  * Here the animation of the moving RecyclerItem adn the colour behind it is implemented
  * Also the methods of the implemented interfaces will be called.
- *
+ * <p>
  * The plan is to make it possible that only one f the two (left and right swipe) interfaces can be passed
  * and then only the one swipe gesture will be possible.
  * That doesn't completely works at the moment
@@ -64,7 +64,6 @@ public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
     private Paint textPaintRight;
 
 
-
     //------------Constructors------------
 
     /**
@@ -72,7 +71,8 @@ public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
      *
      * @param onLeftSwipe Implementation of the left swipe action
      */
-    public SwipeGestureManager(SwipeCallbackLeft onLeftSwipe) {
+    public SwipeGestureManager(SwipeCallbackLeft onLeftSwipe)
+    {
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
         leftBackgroundColor = new ColorDrawable(Color.BLUE);
         rightBackgroundColor = new ColorDrawable(Color.BLUE);
@@ -95,10 +95,11 @@ public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
 
     /**
      * Public Constructor to just implement the RightSwipe
-     * @param onRightSwipe
-     * Implementation of the right swipe action
+     *
+     * @param onRightSwipe Implementation of the right swipe action
      */
-    public SwipeGestureManager(SwipeCallbackRight onRightSwipe) {
+    public SwipeGestureManager(SwipeCallbackRight onRightSwipe)
+    {
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
         leftBackgroundColor = new ColorDrawable(Color.BLUE);
         rightBackgroundColor = new ColorDrawable(Color.BLUE);
@@ -123,13 +124,11 @@ public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
     /**
      * Public Constructor to implement both swipe directions
      *
-     * @param onLeftSwipe
-     * Implementation of the left swipe action
-     * @param  onRightSwipe
-     * Implementation of the right swipe action
-     *
+     * @param onLeftSwipe  Implementation of the left swipe action
+     * @param onRightSwipe Implementation of the right swipe action
      */
-    public SwipeGestureManager(SwipeCallbackRight onRightSwipe, SwipeCallbackLeft onLeftSwipe) {
+    public SwipeGestureManager(SwipeCallbackRight onRightSwipe, SwipeCallbackLeft onLeftSwipe)
+    {
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
         leftBackgroundColor = new ColorDrawable(Color.BLUE);
         rightBackgroundColor = new ColorDrawable(Color.BLUE);
@@ -155,15 +154,18 @@ public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
     //------------ItemTouchHelper Methods------------
 
     @Override
-    public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
+    public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1)
+    {
         return false;
     }
 
     @Override
-    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction)
+    {
         int position = viewHolder.getAdapterPosition();
 
-        if (swipeCallbackLeft != null) {
+        if (swipeCallbackLeft != null)
+        {
             if (direction == ItemTouchHelper.LEFT)
             {
                 this.swipeCallbackLeft.onLeftSwipe(position);
@@ -180,81 +182,134 @@ public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
 
 
     @Override
-    public void onChildDraw(@NonNull Canvas canvas, @NonNull RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+    public void onChildDraw(@NonNull Canvas canvas, @NonNull RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive)
+    {
 
         View itemView = viewHolder.itemView;
-        int backgroundCornerOffset = 0;
+
 
         // Swiping to the right
         if (dX > 0)
         {
-            if (swipeCallbackRight != null)
-            {
-                leftBackgroundColor.setBounds(itemView.getLeft(), itemView.getTop(), itemView.getLeft() + ((int) dX) + backgroundCornerOffset, itemView.getBottom());
-                leftBackgroundColor.draw(canvas);
+            this.drawRightLayout(canvas, itemView, dX);
 
-                if (drawableRight != null) {
-                    int heightRight = drawableRight.getIntrinsicHeight() * iconSizeMultiplier;
-                    int widthRight = drawableRight.getIntrinsicWidth() * iconSizeMultiplier;
-
-                    drawableRight.setBounds(itemView.getLeft() + 40, itemView.getTop() + (itemView.getHeight() - heightRight) / 2, itemView.getLeft() + 40+ widthRight, itemView.getBottom() - (itemView.getHeight() - heightRight) / 2);
-                    drawableRight.draw(canvas);
-                    if(textRight != null)
-                    {
-                        Rect textBounds  = new Rect();
-                        textPaintRight.getTextBounds(textRight, 0, textRight.length(), textBounds );
-                        float textMiddle = textBounds.top - textBounds.top / 2;
-                        canvas.drawText(textRight,  (float) (itemView.getLeft() + 1.5 * widthRight),  itemView.getBottom() - itemView.getHeight()/2 - textMiddle , textPaintRight);
-                    }
-                }
-                else if(textRight != null)
-                {
-                    Rect textBounds  = new Rect();
-                    textPaintRight.getTextBounds(textRight, 0, textRight.length(), textBounds );
-                    float textMiddle = textBounds.top - textBounds.top / 2;
-                    canvas.drawText(textRight,  (float) (itemView.getLeft() + 40 ),  itemView.getBottom() - itemView.getHeight()/2 - textMiddle , textPaintRight);
-                }
-                super.onChildDraw(canvas, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
-            }
         }
-
         // Swiping to the left
-        else if (dX < 0) {
-            if (swipeCallbackLeft != null)
-            {
-                rightBackgroundColor.setBounds(itemView.getRight() + ((int) dX) - backgroundCornerOffset, itemView.getTop(), itemView.getRight(), itemView.getBottom());
-                rightBackgroundColor.draw(canvas);
-                if (drawableLeft != null)
-                {
-                    int heightLeft = drawableLeft.getIntrinsicHeight() * iconSizeMultiplier;
-                    int widthLeft = drawableLeft.getIntrinsicWidth() * iconSizeMultiplier;
+        else if (dX < 0)
+        {
+            this.drawLeftLayout(canvas, itemView, dX);
+        }
+        super.onChildDraw(canvas, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+    }
 
-                    drawableLeft.setBounds(itemView.getRight() - 40 - widthLeft, itemView.getTop() + (itemView.getHeight() - heightLeft) / 2, itemView.getRight() - 40, itemView.getBottom() - (itemView.getHeight() - heightLeft) / 2);
-                    drawableLeft.draw(canvas);
-                    if(textLeft != null)
-                    {
-                        Rect textBounds  = new Rect();
-                        textPaintRight.getTextBounds(textLeft, 0, textLeft.length(), textBounds );
-                        float textMiddle = textBounds.top - textBounds.top / 2;
-                        canvas.drawText(textLeft, (float) (itemView.getRight() - 1.5 * widthLeft),  itemView.getBottom() - itemView.getHeight()/2 - textMiddle , textPaintLeft);
-                    }
-                }
-                else if(textLeft != null)
+
+    //------------Drawing Canvas------------
+
+
+    private void drawLeftLayout(Canvas canvas, View itemView, float dX)
+    {
+        int backgroundCornerOffset = 0;
+        if (swipeCallbackLeft != null)
+        {
+
+            //Setting background colours bounds  and draw to he canvas
+            rightBackgroundColor.setBounds(itemView.getRight() + ((int) dX) - backgroundCornerOffset, itemView.getTop(), itemView.getRight(), itemView.getBottom());
+            rightBackgroundColor.draw(canvas);
+
+            //Draw Icons and Text
+            if (drawableLeft != null)
+            {
+                //Calculate values
+                int drawableHeight = drawableLeft.getIntrinsicHeight() * iconSizeMultiplier;
+                int drawableWidth = drawableLeft.getIntrinsicWidth() * iconSizeMultiplier;
+                int boundRight = itemView.getRight() - 40;
+                int boundLeft = boundRight - drawableWidth;
+                int boundTop = itemView.getTop() + (itemView.getHeight() - drawableHeight) / 2;
+                int boundBottom = itemView.getBottom() - (itemView.getHeight() - drawableHeight) / 2;
+
+                drawableLeft.setBounds(boundLeft, boundTop, boundRight, boundBottom);
+                drawableLeft.draw(canvas);
+
+                if (textLeft != null)
                 {
-                    Rect textBounds  = new Rect();
-                    textPaintRight.getTextBounds(textLeft, 0, textLeft.length(), textBounds );
-                    float textMiddle = textBounds.top - textBounds.top / 2;
-                    canvas.drawText(textLeft, (float) (itemView.getRight() - 40 ),  itemView.getBottom() - itemView.getHeight()/2 - textMiddle , textPaintLeft);
+                    // if an icon is present we need to consider its size for the left margin
+                    drawTextLeft(canvas, itemView, 1.5 * drawableWidth);
                 }
-                super.onChildDraw(canvas, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+            }
+            else if (textLeft != null)
+            {
+                drawTextLeft(canvas, itemView, 40);
             }
         }
         else
-            {
+        {
             rightBackgroundColor.setBounds(0, 0, 0, 0);
             leftBackgroundColor.setBounds(0, 0, 0, 0);
         }
+    }
 
+    private void drawTextLeft(Canvas canvas, View itemView, double marginRight)
+    {
+        //Getting the text Bounds
+        Rect textBounds = new Rect();
+        textPaintLeft.getTextBounds(textLeft, 0, textLeft.length(), textBounds);
+
+        //calculating values
+        float textMiddle = textBounds.top - textBounds.top / 2;
+        float x = (float) (itemView.getRight() - marginRight);
+        float y = itemView.getBottom() - itemView.getHeight() / 2 - textMiddle;
+
+        //Drawing text at coordinates
+        canvas.drawText(textLeft, x, y, textPaintLeft);
+    }
+
+    private void drawRightLayout(Canvas canvas, View itemView, float dX)
+    {
+        int backgroundCornerOffset = 0;
+        if (swipeCallbackRight != null)
+        {
+            leftBackgroundColor.setBounds(itemView.getLeft(), itemView.getTop(), itemView.getLeft() + ((int) dX) + backgroundCornerOffset, itemView.getBottom());
+            leftBackgroundColor.draw(canvas);
+
+            if (drawableRight != null)
+            {
+                //Calculate values
+                int drawableHeight = drawableLeft.getIntrinsicHeight() * iconSizeMultiplier;
+                int drawableWidth = drawableLeft.getIntrinsicWidth() * iconSizeMultiplier;
+                int boundLeft = itemView.getLeft() + 40;
+                int boundRight = boundLeft + drawableWidth;
+                int boundTop = itemView.getTop() + (itemView.getHeight() - drawableHeight) / 2;
+                int boundBottom = itemView.getBottom() - (itemView.getHeight() - drawableHeight) / 2;
+
+                drawableRight.setBounds(boundLeft, boundTop, boundRight, boundBottom);
+                drawableRight.draw(canvas);
+
+                if (textRight != null)
+                {
+                    drawTextRight(canvas, itemView, 1.5 * drawableWidth);
+                }
+            }
+            else if (textRight != null)
+            {
+                drawTextRight(canvas, itemView, 40);
+            }
+        }
+    }
+
+
+    private void drawTextRight(Canvas canvas, View itemView, double marginLeft)
+    {
+        //Getting the text Bounds
+        Rect textBounds = new Rect();
+        textPaintRight.getTextBounds(textRight, 0, textRight.length(), textBounds);
+
+        //calculating values
+        float textMiddle = textBounds.top - textBounds.top / 2;
+        float x = (float) (itemView.getLeft() + marginLeft);
+        float y = itemView.getBottom() - itemView.getHeight() / 2 - textMiddle;
+
+        //Drawing text at coordinates
+        canvas.drawText(textRight, x, y, textPaintRight);
     }
 
 
@@ -266,7 +321,8 @@ public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
      *
      * @param color the colour to be used
      */
-    public void setBackgroundColorLeft(ColorDrawable color) {
+    public void setBackgroundColorLeft(ColorDrawable color)
+    {
         leftBackgroundColor = color;
     }
 
@@ -275,7 +331,8 @@ public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
      *
      * @param color the colour to be used
      */
-    public void setBackgroundColorRight(ColorDrawable color) {
+    public void setBackgroundColorRight(ColorDrawable color)
+    {
         rightBackgroundColor = color;
     }
 
@@ -284,7 +341,8 @@ public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
      *
      * @param icon the icon to be used
      */
-    public void setIconLeft(Drawable icon) {
+    public void setIconLeft(Drawable icon)
+    {
         drawableLeft = icon;
     }
 
@@ -293,7 +351,8 @@ public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
      *
      * @param icon the icon to be used
      */
-    public void setIconRight(Drawable icon) {
+    public void setIconRight(Drawable icon)
+    {
         drawableRight = icon;
     }
 
@@ -302,7 +361,8 @@ public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
      *
      * @param factor the factor
      */
-    public void setIconSizeMultiplier(int factor) {
+    public void setIconSizeMultiplier(int factor)
+    {
         this.iconSizeMultiplier = factor;
     }
 
@@ -311,36 +371,29 @@ public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
      *
      * @param textRight the text which will appear at the side of the icon
      */
-    public void setTextRight(String textRight) {
+    public void setTextRight(String textRight)
+    {
         this.textRight = textRight;
     }
 
     /**
      * Setter for the left swipe action text
      *
-     * @param  textLeft the text which will appear at the side of the icon
+     * @param textLeft the text which will appear at the side of the icon
      */
-    public void setTextLeft(String textLeft) {
+    public void setTextLeft(String textLeft)
+    {
         this.textLeft = textLeft;
     }
+
+
     //------------OnSwipe------------
-
-
-
-    /**
-     * Setter for the left swipe callback
-     * to set it after initialization
-     * @param swipeCallbackLeft
-     */
-    public void setSwipeCallbackLeft(SwipeCallbackLeft swipeCallbackLeft)
-    {
-        this.swipeCallbackLeft = swipeCallbackLeft;
-    }
 
 
     /**
      * Setter for the left right callback
      * to set it after initialization
+     *
      * @param swipeCallbackRight
      */
     public void setSwipeCallbackRight(SwipeCallbackRight swipeCallbackRight)
@@ -364,5 +417,15 @@ public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
         void onRightSwipe(int position);
     }
 
+    /**
+     * Setter for the left swipe callback
+     * to set it after initialization
+     *
+     * @param swipeCallbackLeft
+     */
+    public void setSwipeCallbackLeft(SwipeCallbackLeft swipeCallbackLeft)
+    {
+        this.swipeCallbackLeft = swipeCallbackLeft;
+    }
 
 }
