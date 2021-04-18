@@ -10,7 +10,7 @@ An easy to use and highly customizable implemenation of swipe gestures for an an
 * Support for left and right swipes for any RecyclerView
 * Set Colours as background for each swipe direction
 * Set Icons for each swipe direction 
-* Sez zexzs in addition to icons
+* Set texts in addition to icons
 
 ## 2. Planned 
 
