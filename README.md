@@ -11,10 +11,10 @@
 
 An easy to use and highly customizable implemenation of swipe gestures for an android RecyclerView. 
 
-* Support for left and right swipes for any RecyclerView
-* Set Colours as background for each swipe direction
-* Set Icons for each swipe direction 
-* Set texts in addition to icons
+*  Support for left and right swipes for any RecyclerView
+*  Set Colours as background for each swipe direction
+*  Set Icons for each swipe direction 
+*  Set texts in addition to icons
 
 ## 2. Planned 
 
@@ -25,9 +25,9 @@ An easy to use and highly customizable implemenation of swipe gestures for an an
 
 ### 3.1. Add JitPack to your Project
 
-#### Gradle: 
+#### Gradle
 
-* Add it in your root build.gradle at the end of repositories:
+*  Add it in your root build.gradle at the end of repositories:
 ```groovy
 	allprojects {
 		repositories {
@@ -37,16 +37,16 @@ An easy to use and highly customizable implemenation of swipe gestures for an an
 	}
 ```
 
-* Add the dependencie 
+*  Add the dependencie 
 ```groovy
 	dependencies {
 	        implementation 'com.github.WilliBoelke:simple-recycler-view-swipe-gestures:v1.1'
 	}
 ```
 
-#### Maven:
+#### Maven
 
-* Add the JitPack Repository to your pom.xml 
+*  Add the JitPack Repository to your pom.xml 
 ```xml
 <repositories>
 	<repository>
@@ -56,7 +56,7 @@ An easy to use and highly customizable implemenation of swipe gestures for an an
 </repositories>
 ```
 
-* Add the dependencie to your pom.xml
+*  Add the dependencie to your pom.xml
 
 ```xml
 <dependency>
@@ -65,7 +65,7 @@ An easy to use and highly customizable implemenation of swipe gestures for an an
 	<version>v1.1</version>
 </dependency>
 ```
-#### Or find other versions here: 
+#### Or find other versions here
 [JitPack-SompleSwipeGestures](https://jitpack.io/#WilliBoelke/simple-recycler-view-swipe-gestures)
 
 ### 3.2 Import `SwipeGestureManager`  <br />
@@ -78,7 +78,7 @@ import SwipeGestures.SwipeGestureManager;
 
 ## 4. Usage 
 
-### 4.1 Implement the `SwipeCallbackLeft` and/or `SwipeCallbackLeft`:
+### 4.1 Implement the `SwipeCallbackLeft` and/or `SwipeCallbackLeft`
 In your activity implement the interfaces. <br />
 Here you put the code which will be executed when the recyycler item was swiped.
 ```java
@@ -92,7 +92,7 @@ Here you put the code which will be executed when the recyycler item was swiped.
     }; 
 ```
 
-### 4.2 Initialize 'SwipeGestureManager'in your activity :  <br />
+### 4.2 Initialize 'SwipeGestureManager'in your activity  <br />
 
 ```java
  SwipeGestureManager recyclerAdapterSwipeGestures = new SwipeGestureManager(rightCallback, leftCallback);
@@ -105,7 +105,7 @@ SwipeGestureManager recyclerAdapterSwipeGestures = new SwipeGestureManager(right
 
 
 
-### 4.3 Set a colour:
+### 4.3 Set a colour
 Use the setter to set a colour: 
 ```java     
 recyclerAdapterSwipeGestures.setBackgroundColorLeft(new ColorDrawable(Color.RED));
@@ -118,7 +118,7 @@ Blue                          |  Yellow
 :-----------------------------------:|:---------------------------------------:
 ![BLUE](img/ColourBlue.png )       | ![YELLOW](img/ColourYellow.png)
 
-### 4.4 Set Icons:
+### 4.4 Set Icons
 Optionally you can use icons for the swipe acions which will be displayed when the swpie is performed. 
 ```java
 recyclerAdapterSwipeGestures.setIconRight(ContextCompat.getDrawable(this, R.drawable.your_icon));
@@ -177,7 +177,7 @@ Text and icon color                  |  Only Text
 ### 4.6 Attach to the `RechylerViewAdapter`
 
 You need to attach the swipe gestures to the RecyyclerView Adapter using a ItemTouchHelper
-```
+```java
 ItemTouchHelper itemTouchHelper = new ItemTouchHelper(recyclerAdapterSwipeGestures);
 itemTouchHelper.attachToRecyclerView(recyclerView);
 ```
