@@ -24,10 +24,8 @@ import willi.boelke.swipeGestures.recyclerViewAdapter.RecyclerViewAdapterWithOnC
 public class MainActivity extends AppCompatActivity
 {
     private ArrayList<String> list;
-    private RecyclerView recyclerView;
     private RecyclerViewAdapterWithOnClick adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ItemTouchHelper itemTouchHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -60,7 +58,7 @@ public class MainActivity extends AppCompatActivity
      * and the swipe Gestures
      */
     private void setupRecyclerView() {
-        recyclerView = findViewById(R.id.demo_recycler_view);
+        RecyclerView recyclerView = findViewById(R.id.demo_recycler_view);
         layoutManager = new LinearLayoutManager(this.getApplicationContext());
         adapter = new RecyclerViewAdapterWithOnClick(list);
 
@@ -87,7 +85,7 @@ public class MainActivity extends AppCompatActivity
         recyclerAdapterSwipeGestures.setTextColor(Color.BLACK);
 
         // Attach to the Recycler View Adapter
-        itemTouchHelper = new ItemTouchHelper(recyclerAdapterSwipeGestures);
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(recyclerAdapterSwipeGestures);
         itemTouchHelper.attachToRecyclerView(recyclerView);
 
 
