@@ -164,19 +164,13 @@ public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
     {
         int position = viewHolder.getAdapterPosition();
 
-        if (swipeCallbackLeft != null)
+        if (swipeCallbackLeft != null && direction == ItemTouchHelper.LEFT)
         {
-            if (direction == ItemTouchHelper.LEFT)
-            {
-                this.swipeCallbackLeft.onLeftSwipe(position);
-            }
+            this.swipeCallbackLeft.onLeftSwipe(position);
         }
-        if (swipeCallbackRight != null)
+        if (swipeCallbackRight != null && direction == ItemTouchHelper.RIGHT)
         {
-            if (direction == ItemTouchHelper.RIGHT)
-            {
-                this.swipeCallbackRight.onRightSwipe(position);
-            }
+            this.swipeCallbackRight.onRightSwipe(position);
         }
     }
 
@@ -481,6 +475,7 @@ public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
     /**
      * Sets the text weight/stroke for both texts
      * @param weight
+     * An integer which changes the stroke of the text paint
      */
     public void setTextWeight(float weight)
     {
@@ -491,7 +486,9 @@ public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
     /**
      *  Sets the text weight/stroke for both texts individually
      * @param weightLeft
+     * An integer which changes the stroke of the text paint
      * @param weightRight
+     * An integer which changes the stroke of the text paint
      */
     public void setTextWeight(float weightLeft, float weightRight)
     {

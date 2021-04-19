@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-
 import swipeGestures.SwipeGestureManager;
 import willi.boelke.swipeGestures.recyclerViewAdapter.RecyclerViewAdapterWithOnClick;
 
@@ -25,7 +24,6 @@ public class MainActivity extends AppCompatActivity
 {
     private ArrayList<String> list;
     private RecyclerViewAdapterWithOnClick adapter;
-    private RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -59,7 +57,7 @@ public class MainActivity extends AppCompatActivity
      */
     private void setupRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.demo_recycler_view);
-        layoutManager = new LinearLayoutManager(this.getApplicationContext());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this.getApplicationContext());
         adapter = new RecyclerViewAdapterWithOnClick(list);
 
 
