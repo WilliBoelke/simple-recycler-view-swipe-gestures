@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 
-import SwipeGestures.SwipeGestureManager;
-import willi.boelke.swipeGestures.RecyclerViewAdapter.RecyclerViewAdapterWithOnClick;
+import swipeGestures.SwipeGestureManager;
+import willi.boelke.swipeGestures.recyclerViewAdapter.RecyclerViewAdapterWithOnClick;
 
 
 /**

@@ -1,4 +1,4 @@
-package SwipeGestures;
+package swipeGestures;
 
 
 import android.graphics.Canvas;
