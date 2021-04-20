@@ -2,9 +2,8 @@
 
 [![](https://jitpack.io/v/WilliBoelke/simple-recycler-view-swipe-gestures.svg)](https://jitpack.io/#WilliBoelke/simple-recycler-view-swipe-gestures)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/b2ac62aae75f4db8b5edbd7d7b5da606)](https://www.codacy.com/gh/WilliBoelke/simple-recycler-view-swipe-gestures/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=WilliBoelke/simple-recycler-view-swipe-gestures&amp;utm_campaign=Badge_Grade)
-![GitHub last commit](https://img.shields.io/github/last-commit/WilliBoelke/simple-recycler-view-swipe-gestures?color=red&style=plastic)
+![GitHub last commit](https://img.shields.io/github/last-commit/WilliBoelke/simple-recycler-view-swipe-gestures?color=red&style=flat)
 [![Issues](https://img.shields.io/github/issues-raw/WilliBoelke/simple-recycler-view-swipe-gestures?maxAge=25000)](https://github.com/WilliBoelke/simple-recycler-view-swipe-gestures/issues)  
-[![GitHub pull requests](https://img.shields.io/github/issues-pr/cdnjs/cdnjs.svg?style=flat)]()
 [![PR's Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http:/WilliBoelke/simple-recycler-view-swipe-gestures)
 
 ## 1. Introduction 
