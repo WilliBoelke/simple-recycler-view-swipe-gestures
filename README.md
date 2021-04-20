@@ -9,7 +9,7 @@
 
 ## 1. Introduction 
 
-An easy to use and highly customizable implemenation of swipe gestures for an android RecyclerView. 
+An easy to use and highly customizable implementation of swipe gestures for an android RecyclerView. 
 
 *	Support for left and right swipes for any RecyclerView
 *	Set Colours as background for each swipe direction
@@ -56,7 +56,7 @@ An easy to use and highly customizable implemenation of swipe gestures for an an
 </repositories>
 ```
 
-*	Add the dependencie to your pom.xml
+*	Add the dependency to your pom.xml
 
 ```xml
 <dependency>
@@ -68,11 +68,11 @@ An easy to use and highly customizable implemenation of swipe gestures for an an
 #### Or find other versions here
 [JitPack-SompleSwipeGestures](https://jitpack.io/#WilliBoelke/simple-recycler-view-swipe-gestures)
 
-### 3.2 Import `SwipeGestureManager`  <br />
+### 3.2 Import `GestureManager`  <br />
 
 In your Activity add  <br />
 ```java 
-import SwipeGestures.SwipeGestureManager;
+import swipe.gestures.GestureManager;
 ```
 
 ## 4. Usage 
@@ -81,7 +81,7 @@ import SwipeGestures.SwipeGestureManager;
 In your activity implement the interfaces. <br />
 Here you put the code which will be executed when the recyycler item was swiped.
 ```java
-  private SwipeGestureManager.SwipeCallbackLeft leftCallback leftCallback = new SwipeCallbackLeft()
+  private GestureManager.SwipeCallbackLeft leftCallback leftCallback = new SwipeCallbackLeft()
     {
         @Override
         public void onLeftSwipe(int position)
@@ -91,15 +91,15 @@ Here you put the code which will be executed when the recyycler item was swiped.
     }; 
 ```
 
-### 4.2 Initialize 'SwipeGestureManager'in your activity  <br />
+### 4.2 Initialize 'GestureManager'in your activity  <br />
 
 ```java
- SwipeGestureManager recyclerAdapterSwipeGestures = new SwipeGestureManager(rightCallback, leftCallback);
+ GestureManager recyclerAdapterSwipeGestures = new GestureManager(rightCallback, leftCallback);
 ```
 If you just need one swipe gesture the just implement one of the interfaces and pass it:
  <br />
 ```java
-SwipeGestureManager recyclerAdapterSwipeGestures = new SwipeGestureManager(rightCallback);
+GestureManager recyclerAdapterSwipeGestures = new GestureManager(rightCallback);
 ```
 
 ### 4.3 Set a colour

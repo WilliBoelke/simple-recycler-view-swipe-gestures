@@ -1,4 +1,4 @@
-package willi.boelke.swipeGestures;
+package willi.boelke.demo;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import swipeGestures.SwipeGestureManager;
-import willi.boelke.swipeGestures.recyclerViewAdapter.RecyclerViewAdapterWithOnClick;
+import swipe.gestures.GestureManager;
+import willi.boelke.demo.adapter.RecyclerViewAdapterWithOnClick;
 
 
 /**
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity
         adapter = new RecyclerViewAdapterWithOnClick(list);
 
 
-        SwipeGestureManager recyclerAdapterSwipeGestures = new SwipeGestureManager(rightCallback, leftCallback);
+        GestureManager recyclerAdapterSwipeGestures = new GestureManager(rightCallback, leftCallback);
 
         // Setting background colours
         recyclerAdapterSwipeGestures.setBackgroundColorLeft(new ColorDrawable(Color.RED));
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity
 
 
 
-    private SwipeGestureManager.SwipeCallbackLeft leftCallback = new SwipeGestureManager.SwipeCallbackLeft()
+    private GestureManager.SwipeCallbackLeft leftCallback = new GestureManager.SwipeCallbackLeft()
     {
         @Override
         public void onLeftSwipe(int position)
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity
     };
 
 
-    private SwipeGestureManager.SwipeCallbackRight rightCallback = new SwipeGestureManager.SwipeCallbackRight()
+    private GestureManager.SwipeCallbackRight rightCallback = new GestureManager.SwipeCallbackRight()
     {
         @Override
         public void onRightSwipe(int position)

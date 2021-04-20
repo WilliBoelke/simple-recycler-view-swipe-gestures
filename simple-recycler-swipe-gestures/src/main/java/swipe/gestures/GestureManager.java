@@ -1,4 +1,4 @@
-package swipeGestures;
+package swipe.gestures;
 
 
 import android.graphics.Canvas;
@@ -23,7 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
  * and then only the one swipe gesture will be possible.
  * That doesn't completely works at the moment
  */
-public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
+public class GestureManager extends ItemTouchHelper.SimpleCallback
 {
     //------------Standard Values------------
 
@@ -93,7 +93,7 @@ public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
      *
      * @param onLeftSwipe Implementation of the left swipe action
      */
-    public SwipeGestureManager(SwipeCallbackLeft onLeftSwipe)
+    public GestureManager(SwipeCallbackLeft onLeftSwipe)
     {
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
         initWithStandardValues();
@@ -106,7 +106,7 @@ public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
      *
      * @param onRightSwipe Implementation of the right swipe action
      */
-    public SwipeGestureManager(SwipeCallbackRight onRightSwipe)
+    public GestureManager(SwipeCallbackRight onRightSwipe)
     {
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
         initWithStandardValues();
@@ -121,7 +121,7 @@ public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
      * @param onLeftSwipe  Implementation of the left swipe action
      * @param onRightSwipe Implementation of the right swipe action
      */
-    public SwipeGestureManager(SwipeCallbackRight onRightSwipe, SwipeCallbackLeft onLeftSwipe)
+    public GestureManager(SwipeCallbackRight onRightSwipe, SwipeCallbackLeft onLeftSwipe)
     {
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
         initWithStandardValues();
@@ -512,7 +512,7 @@ public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
     }
 
     /**
-     * Used to implement different  Swipe actions in {@link SwipeGestureManager}
+     * Used to implement different  Swipe actions in {@link GestureManager}
      */
     public interface SwipeCallbackLeft
     {
@@ -520,7 +520,7 @@ public class SwipeGestureManager extends ItemTouchHelper.SimpleCallback
     }
 
     /**
-     * Used to implement different  Swipe actions in {@link SwipeGestureManager}
+     * Used to implement different  Swipe actions in {@link GestureManager}
      */
     public interface SwipeCallbackRight
     {
