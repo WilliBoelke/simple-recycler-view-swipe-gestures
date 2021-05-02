@@ -6,6 +6,10 @@
 [![Issues](https://img.shields.io/github/issues-raw/WilliBoelke/simple-recycler-view-swipe-gestures?maxAge=25000)](https://github.com/WilliBoelke/simple-recycler-view-swipe-gestures/issues)  
 [![PR's Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http:/WilliBoelke/simple-recycler-view-swipe-gestures)
 
+## Contribution 
+
+Contributions / PRs are welcome. 
+
 ## 1. Introduction 
 
 An easy to use and highly customizable implementation of swipe gestures for an android RecyclerView. 
