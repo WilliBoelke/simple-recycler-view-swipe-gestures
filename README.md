@@ -41,10 +41,10 @@ An easy to use and highly customizable implementation of swipe gestures for an a
 ```
 
 *	Add the dependencie 
-```groovy
-	dependencies {
-	        implementation 'com.github.WilliBoelke:simple-recycler-view-swipe-gestures:v1.1'
-	}
+```	
+dependencies {
+	implementation 'com.github.WilliBoelke:simple-recycler-view-swipe-gestures:1.3'
+}
 ```
 
 #### Maven
@@ -63,9 +63,9 @@ An easy to use and highly customizable implementation of swipe gestures for an a
 
 ```xml
 <dependency>
-	<groupId>com.github.WilliBoelke</groupId>
-	<artifactId>simple-recycler-view-swipe-gestures</artifactId>
-	<version>v1.1</version>
+    <groupId>com.github.WilliBoelke</groupId>
+    <artifactId>simple-recycler-view-swipe-gestures</artifactId>
+    <version>1.3</version>
 </dependency>
 ```
 #### Or find other versions here
