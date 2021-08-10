@@ -84,7 +84,7 @@ import swipe.gestures.GestureManager;
 
 ### 4.1 Implement the `SwipeCallbackLeft` and/or `SwipeCallbackLeft`
 In your activity implement the interfaces. <br />
-Here you put the code which will be executed when the recyycler item was swiped.
+Here you put the code which will be executed when the recycler item was swiped.
 ```java
   private GestureManager.SwipeCallbackLeft leftCallback leftCallback = new SwipeCallbackLeft()
     {
