@@ -174,7 +174,7 @@ Right Text                           |  Small
 Text and icon color                  |  Only Text
 ![COLOURTEXT](img/TextAndIconColour.png) | ![ONLYTEXT](img/TextNoIcon.png) 
 
-### 4.6 Attach to the `RechylerViewAdapter`
+### 4.6 Attach to the `RecylerViewAdapter`
 
 You need to attach the swipe gestures to the RecyyclerView Adapter using a ItemTouchHelper
 ```java
