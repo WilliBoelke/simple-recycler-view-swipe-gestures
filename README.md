@@ -31,7 +31,9 @@ An easy to use and highly customizable implementation of swipe gestures for an a
 #### Gradle
 
 *	Add it in your root build.gradle at the end of repositories: <br />
-**(!!! Note:  check the JitPack link for newer version, the following ones may not be up to date !!!)**
+
+> **Note**
+> check the JitPack link for newer version, the following ones may not be up to date
 
 ```groovy
 	allprojects {
