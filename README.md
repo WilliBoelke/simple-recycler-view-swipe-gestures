@@ -1,5 +1,7 @@
 # Android-RecyclerView-Swipe-Gestures
 
+![Alt](https://repobeats.axiom.co/api/embed/4d445ab4a06fe5b552c3ab651fe55d4e6787cd4e.svg "Repobeats analytics image")
+
 [![](https://jitpack.io/v/WilliBoelke/simple-recycler-view-swipe-gestures.svg)](https://jitpack.io/#WilliBoelke/simple-recycler-view-swipe-gestures)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/b2ac62aae75f4db8b5edbd7d7b5da606)](https://www.codacy.com/gh/WilliBoelke/simple-recycler-view-swipe-gestures/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=WilliBoelke/simple-recycler-view-swipe-gestures&amp;utm_campaign=Badge_Grade)
 ![GitHub last commit](https://img.shields.io/github/last-commit/WilliBoelke/simple-recycler-view-swipe-gestures?color=red&style=flat)
